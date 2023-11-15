@@ -24,7 +24,7 @@ namespace Sovelluskehitys_esimerkki
     public partial class MainWindow : Window
     {
         private string solun_arvo;
-        string polku = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\k2101800\\source\\repos\\tuotekanta.mdf;Integrated Security=True;Connect Timeout=30";
+        string polku = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\k2101800\\Documents\\tietokanta.mdf;Integrated Security=True;Connect Timeout=30";
         public MainWindow()
         {
             InitializeComponent();
