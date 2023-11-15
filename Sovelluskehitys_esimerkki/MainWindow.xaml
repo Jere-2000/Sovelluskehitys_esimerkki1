@@ -13,12 +13,13 @@
                     <Button x:Name="painike_hae" Content="Hae tietokannasta" HorizontalAlignment="Left" Margin="28,24,0,0" VerticalAlignment="Top" Height="42" Width="140" Click="painike_hae_Click"/>
                     <DataGrid x:Name="tuote_lista" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="28,95,378,99" BeginningEdit="tuote_lista_BeginningEdit" CellEditEnding="tuote_lista_CellEditEnding"/>
                     <TextBox x:Name="viestirivi" HorizontalAlignment="Left" Margin="28,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="700" Height="24"/>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem Header="Lisää/Poista tuote">
+
                 <Grid Background="#FFE5E5E5">
-                    
+
                     <Button x:Name="painike_lisaa" Content="Lisää tuote" HorizontalAlignment="Left" Margin="150,139,0,0" VerticalAlignment="Top" Height="53" Width="144" Click="painike_lisaa_Click" Grid.Column="1"/>
                     <Label Content="Tuotteen nimi" HorizontalAlignment="Left" Margin="18,11,0,0" VerticalAlignment="Top" Height="40" Width="95" Grid.Column="1"/>
                     <Label Content="Tuotteen hinta" HorizontalAlignment="Left" Margin="18,73,0,0" VerticalAlignment="Top" Height="40" Width="95" Grid.Column="1"/>
@@ -26,6 +27,15 @@
                     <TextBox x:Name="tuote_hinta" HorizontalAlignment="Left" Margin="150,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Height="32" Grid.Column="1"/>
                     <ComboBox x:Name="combo_tuotteet" HorizontalAlignment="Left" Margin="150,229,0,0" VerticalAlignment="Top" Width="144" Height="33" Grid.Column="1"/>
                     <Button x:Name="painike_poista" Content="Poista tuote" HorizontalAlignment="Left" Margin="150,296,0,0" VerticalAlignment="Top" Width="144" Height="53" Click="painike_poista_Click" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Asiakkaat">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="143*"/>
+                        <ColumnDefinition Width="651*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="asiakas_lista" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="28,95,378,99" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
         </TabControl>
