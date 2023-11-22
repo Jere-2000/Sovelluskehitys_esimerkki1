@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Windows.Controls.Primitives;
+using System.Linq.Expressions;
 
 namespace Sovelluskehitys_esimerkki
 {
@@ -34,8 +35,8 @@ namespace Sovelluskehitys_esimerkki
 
             paivitaDataGrid("SELECT * FROM tuotteet", "tuotteet", tuote_lista);
             paivitaDataGrid("SELECT * FROM asiakkaat", "asiakkaat", asiakas_lista);
-            paivitaDataGrid("SELECT ti.id AS id, a.nimi AS asiakas, tu.nimi AS tuote, ti.toimitettu AS toimitettu FROM tilaukset ti, asiakkaat a, tuotteet tu WHERE a.id=ti.asikas_id AND tu.id=ti.tuote_id", "tilaukset",Tilaukset_lista);
-            
+            paivitaDataGrid("SELECT ti.id AS id, a.nimi AS asiakas, tu.nimi AS tuote, ti.toimitettu AS toimitettu FROM tilaukset ti, asiakkaat a, tuotteet tu WHERE a.id=ti.asikas_id AND tu.id=ti.tuote_id", "tilaukset", Tilaukset_lista);
+
 
         }
 
@@ -47,7 +48,7 @@ namespace Sovelluskehitys_esimerkki
             }
             catch
             {
-                viestirivi.Text = "Tietojen haku epäonnistui";
+                tilaviesti.Text = "Tietojen haku epäonnistui";
             }
         }
 
@@ -103,7 +104,7 @@ namespace Sovelluskehitys_esimerkki
             combo_tuotteet.DisplayMemberPath = "TUOTE";
             combo_tuotteet.SelectedValuePath = "ID";
 
-            while(lukija.Read()) 
+            while (lukija.Read())
             {
                 int id = lukija.GetInt32(0);
                 string tuote = lukija.GetString(1);
@@ -122,7 +123,7 @@ namespace Sovelluskehitys_esimerkki
             string id = combo_tuotteet.SelectedValue.ToString();
             SqlCommand komento = new SqlCommand("DELETE FROM tuotteet WHERE id =" + id + ";", kanta);
             komento.ExecuteNonQuery();
-            kanta.Close() ;
+            kanta.Close();
 
             paivitaDataGrid("SELECT * FROM tuotteet", "tuotteet", tuote_lista);
             paivitaComboBox();
@@ -133,7 +134,7 @@ namespace Sovelluskehitys_esimerkki
             int sarake = tuote_lista.CurrentCell.Column.DisplayIndex;
             solun_arvo = (e.Row.Item as DataRowView).Row[sarake].ToString();
 
-            viestirivi.Text = "Sarake: " + sarake + " Arvo " + solun_arvo;
+            tilaviesti.Text = "Sarake: " + sarake + " Arvo " + solun_arvo;
         }
 
         private void tuote_lista_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -162,20 +163,20 @@ namespace Sovelluskehitys_esimerkki
 
                     kanta.Close();
 
-                    viestirivi.Text = "Uusi arvo: " + uusi_arvo;
+                    tilaviesti.Text = "Uusi arvo: " + uusi_arvo;
 
                     paivitaComboBox();
 
                 }
                 else
                 {
-                    viestirivi.Text = "arvo ei muuttunut ";
+                    tilaviesti.Text = "arvo ei muuttunut ";
 
                 }
             }
-            catch 
+            catch
             {
-                viestirivi.Text = "Muokkaus ei onnistunut";
+                tilaviesti.Text = "Muokkaus ei onnistunut";
             }
         }
 
@@ -183,19 +184,29 @@ namespace Sovelluskehitys_esimerkki
 
         private void Painike_asiakas_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection kanta = new SqlConnection(polku);
-            kanta.Open();
+            try
+            {
+                SqlConnection kanta = new SqlConnection(polku);
+                kanta.Open();
 
-            string sql = "INSERT INTO asiakkaat (nimi, puhelinnumero) VALUES ('" + asiakas_nimi.Text + "','" + asiakas_puhelin.Text + "')";
+                string sql = "INSERT INTO asiakkaat (nimi, puhelinnumero) VALUES ('" + asiakas_nimi.Text + "','" + asiakas_puhelin.Text + "')";
 
-            SqlCommand komento = new SqlCommand(sql, kanta);
-            komento.ExecuteNonQuery();
+                SqlCommand komento = new SqlCommand(sql, kanta);
+                komento.ExecuteNonQuery();
 
-            kanta.Close();
+                kanta.Close();
 
-            paivitaDataGrid("SELECT * FROM asiakkaat", "asiakkaat", asiakas_lista);
+                paivitaDataGrid("SELECT * FROM asiakkaat", "asiakkaat", asiakas_lista);
+
+                tilaviesti.Text = "Asiakkaan lisääminen onnistui";
+            }
+            catch 
+            {
+                tilaviesti.Text = "Asiakkaan lisääminen onnistui";
+            }
         }
-
+        
+            
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
