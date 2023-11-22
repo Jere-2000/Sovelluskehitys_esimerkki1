@@ -73,9 +73,9 @@
 
                     <Label Content="Asiakas" HorizontalAlignment="Left" Margin="21,228,0,0" VerticalAlignment="Top"/>
                     <Label Content="Tuote" HorizontalAlignment="Left" Margin="266,235,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="95,235,0,0" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Button Content="Lisää tilaus" HorizontalAlignment="Left" Margin="95,280,0,0" VerticalAlignment="Top" Height="31" Width="256" Click="Button_Click"/>
+                    <ComboBox x:Name="combo_asiakkaat" HorizontalAlignment="Left" Margin="95,235,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="combo_tuotteet_2" HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button Content="Lisää tilaus" HorizontalAlignment="Left" Margin="95,280,0,0" VerticalAlignment="Top" Height="31" Width="362" Click="Button_Click"/>
                 </Grid>
             </TabItem>
 
