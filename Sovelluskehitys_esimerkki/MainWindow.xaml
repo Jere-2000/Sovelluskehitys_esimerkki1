@@ -78,8 +78,18 @@
                     <Button Content="Lisää tilaus" HorizontalAlignment="Left" Margin="95,280,0,0" VerticalAlignment="Top" Height="31" Width="362" Click="Button_Click"/>
                 </Grid>
             </TabItem>
-
-
+            <TabItem Header="Toimitetut">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="Toimitetut_lista" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="21,23,385,171" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="id" Binding="{Binding Path='id'}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="asiakas" Binding="{Binding Path='asiakas'}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="tuote" Binding="{Binding Path='tuote'}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="toimitettu" Binding="{Binding Path='toimitettu'}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
         </TabControl>
         <StatusBar VerticalAlignment="Bottom">
             <TextBlock x:Name="tilaviesti" Text="Valmis"/>
