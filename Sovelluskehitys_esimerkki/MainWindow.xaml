@@ -64,7 +64,7 @@
                             <DataGridTemplateColumn Header="toimita">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Name="Painike_toimita_tilaus" Content="Toimita"/>
+                                        <Button Name="Painike_toimita_tilaus" Content="Toimita" Click="painike_toimita_Click"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
